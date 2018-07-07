@@ -5,7 +5,7 @@ MAINTAINER Odoo S.A. <info@odoo.com>
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
 ENV CROSS_TRIPLE=aarch64-linux-gnu
-COPY /bin/qemu-aarch64 /usr/bin/qemu-aarch64
+COPY bin/qemu-aarch64 /usr/bin/qemu-aarch64
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN ["/usr/bin/qemu-aarch64","/bin/sh", "-c", "set -x && \
         apk update && \
