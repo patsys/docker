@@ -6,6 +6,7 @@ MAINTAINER Odoo S.A. <info@odoo.com>
 ENV LANG C.UTF-8
 ENV CROSS_TRIPLE=aarch64-linux-gnu
 COPY bin/qemu-aarch64 /usr/bin/qemu-aarch64
+RUN mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc  && echo ':aarch64:M::\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\xb7:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff:/usr/bin/qemu-aarch64:' > /proc/sys/fs/binfmt_misc/register  
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN ["/usr/bin/qemu-aarch64","/bin/sh", "-c", "set -x && \
         apk update && \
