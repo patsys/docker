@@ -8,7 +8,7 @@ ENV LANG C.UTF-8
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN set -x && \
         apk update && \
-        apk add python3 nodejs git wget unzip && \
+        apk add python3-dev nodejs git wget unzip libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev && \
         pip3 install --upgrade pip && \
         npm config set unsafe-perm true && \
         npm install -g less && \
@@ -16,7 +16,8 @@ RUN set -x && \
         unzip *.zip -d /etc/odoo && \
         cd /etc/odoo && \
         mv */* . && \
-        pip3 install -r requirements.txt
+        pip3 install -r requirements.txt && \
+        apk del alpine-sdk git wget
         
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
