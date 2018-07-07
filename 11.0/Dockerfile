@@ -1,4 +1,4 @@
-FROM aarch64/alpine
+FROM multiarch/alpine:amd64-edge
 # inoffeziell Docker MAINTAINER Patrick Weber <pat.weber91@gmail.com>
 MAINTAINER Odoo S.A. <info@odoo.com>
 
@@ -8,7 +8,7 @@ ENV CROSS_TRIPLE=aarch64-linux-gnu
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN set -x && \
         apk update && \
-        apk add python3-dev nodejs git wget unzip libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev && \
+        apk add python3-dev nodejs git wget unzip libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev  jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev harfbuzz-dev fribidi-dev && \
         pip3 install --upgrade pip && \
         npm config set unsafe-perm true && \
         npm install -g less && \
