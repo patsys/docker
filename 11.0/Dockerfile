@@ -7,7 +7,7 @@ ENV LANG C.UTF-8
 ENV CROSS_TRIPLE=aarch64-linux-gnu
 COPY /bin/qemu-aarch64 /usr/bin/qemu-aarch64
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
-RUN ["/usr/bin/qemu-aarch64","/etc/bash", "-c", "set -x && \
+RUN ["/usr/bin/qemu-aarch64","/bin/sh", "-c", "set -x && \
         apk update && \
         apk add python3-dev nodejs git wget unzip libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev  jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev harfbuzz-dev fribidi-dev && \
         pip3 install --upgrade pip && \
