@@ -1,8 +1,5 @@
 #!/bin/bash
-#apt-get update
-#apt-get -y install qemu-user-static
-docker run --rm --privileged multiarch/qemu-user-static:register --reset
-for qemu in $( find / -name qemu* ); do
-cp $qemu bin/
-done
+apt-get update
+apt-get -y install qemu-user-static
+cp $( find / qemu-aarch | head -n1 ) bin/qemu-arm-static
 ls bin
