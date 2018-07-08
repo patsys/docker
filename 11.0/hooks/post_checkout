@@ -1,4 +1,6 @@
 #!/bin/bash
 apt-get update
 apt-get -y install qemu-user-static
+find / -name qemu-aarch64
+find / -mame Dockerfile
 docker run --rm --privileged multiarch/qemu-user-static:register --reset
