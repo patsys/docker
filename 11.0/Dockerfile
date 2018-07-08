@@ -5,7 +5,7 @@ MAINTAINER Odoo S.A. <info@odoo.com>
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
 ENV CROSS_TRIPLE=aarch64-linux-gnu
- COPY bin/qemu-aarch64 /usr/bin/qemu-aarch64
+COPY bin/* /usr/bin/
 RUN set -x && \
         apk update && \
         apk add python3-dev nodejs git wget unzip libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev  jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev harfbuzz-dev fribidi-dev && \
