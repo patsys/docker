@@ -1,4 +1,4 @@
-FROM alpine
+FROM aarch64/alpine
 # inoffeziell Docker MAINTAINER Patrick Weber <pat.weber91@gmail.com>
 MAINTAINER Odoo S.A. <info@odoo.com>
 
