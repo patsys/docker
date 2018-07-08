@@ -5,10 +5,7 @@ MAINTAINER Odoo S.A. <info@odoo.com>
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
 ENV CROSS_TRIPLE=aarch64-linux-gnu
-COPY bin/qemu-aarch64 /usr/bin/qemu-aarch64
-RUN mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc  && echo ':aarch64:M::\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\xb7:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff:/usr/bin/qemu-aarch64:' > /proc/sys/fs/binfmt_misc/register  
-# Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
-RUN ["/usr/bin/qemu-aarch64","/bin/sh", "-c", "set -x && \
+RUN ["/bin/sh", "-c", "set -x && \
         apk update && \
         apk add python3-dev nodejs git wget unzip libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev  jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev harfbuzz-dev fribidi-dev && \
         pip3 install --upgrade pip && \
