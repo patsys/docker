@@ -8,7 +8,7 @@ ENV CROSS_TRIPLE=aarch64-linux-gnu
 COPY bin/* /usr/bin/
 RUN set -x && \
         apk update && \
-        apk add python3-dev nodejs git wget unzip linux-headers libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev  jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev harfbuzz-dev fribidi-dev && \
+        apk add python3-dev nodejs git nodejs-npm wget unzip linux-headers openldap-dev libjpeg postgresql-dev alpine-sdk libxml2-dev libxslt-dev  jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev harfbuzz-dev fribidi-dev && \
         pip3 install --upgrade pip && \
         npm config set unsafe-perm true && \
         npm install -g less && \
@@ -21,12 +21,11 @@ RUN set -x && \
         
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
-RUN chown odoo /etc/odoo/odoo.conf
-
-# Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
-RUN mkdir -p /mnt/extra-addons \
-        && chown -R odoo /mnt/extra-addons
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
+RUN addgroup -S odoo && adduser -S odoo -G odoo && \
+        chown odoo:odoo /etc/odoo/odoo.conf &&  \
+	mkdir -p /mnt/extra-addons && \
+	chown -R odoo:odoo /mnt/extra-addons
 
 # Expose Odoo services
 EXPOSE 8069 8071
